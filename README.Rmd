@@ -1,7 +1,7 @@
 ---
 title: "Lab 4 Report"
 author: "Haider Ali"
-date: "'r format(sys.Date())'"
+date: "Feb-15-2021 "
 output: github_document
 ---
 

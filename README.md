@@ -1,7 +1,7 @@
 Lab 4 Report
 ================
 Haider Ali
-‘r format(sys.Date())’
+Feb-15-2021
 
 ``` r
 # load packages -----------------------------------------------------------
