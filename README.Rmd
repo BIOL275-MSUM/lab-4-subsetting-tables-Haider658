@@ -1,0 +1,81 @@
+---
+title: "Lab 4 Report"
+author: "Haider Ali"
+date: "'r format(sys.Date())'"
+output: github_document
+---
+
+```{r}
+
+# load packages -----------------------------------------------------------
+library(tidyverse)
+library(auk)
+
+# birds -------------------------------------------------------------------
+
+birds <-                              # create a new table named birds
+  ebird_taxonomy %>%                  # start with the ebird_taxonomy data
+  as_tibble() %>%                     # tibbles print better in the console
+  filter(category == "species")       # remove non-species taxa
+birds
+```
+
+
+
+# 1.Print a table containing only species NOT in the Order Passeriformes. Include all columns.
+
+```{r}
+filter(birds, !(order == "Passeriformes")) 
+```
+
+# 2.Print a table containing only species in the Order Passeriformes. Include all columns.
+```{r}
+filter(birds, (order == "Passeriformes")) 
+
+```
+
+# 3.Print a table containing all species. Only the variables Species Code, Scientific Name, and Common Name should be in the final table.
+```{r}
+select(birds,species_code , scientific_name, common_name) 
+```
+
+
+# 4.Print a table with all species in the Order Passeriformes whose common name starts with the word “Common”. Species should be in reverse taxonomic order (taxon_order variable). Only the variables Species Code, Scientific Name, and Common Name should be in the final table.
+```{r}
+big_birds <- filter(birds, (order == "Passeriformes")) 
+hello <- filter(big_birds, str_detect(common_name, "Common"))
+reverse <- arrange(hello,desc(taxon_order))
+select(reverse,species_code:common_name)
+```
+
+
+# 5.Print a table containing species with “Warbler” in the common name. Include all columns.
+
+```{r}
+warbler <- filter(birds, str_detect(common_name, "Warbler"))
+warbler
+```
+
+# 6.Using the species found in the previous step (with “Warbler” in their name), print a frequency table for the family variable. You should end up with a table with two columns: family and n.
+```{r}
+count(warbler, family)
+```
+
+
+# 7.print a table with all species whose common name contains a color.
+```{r}
+filter(birds, str_detect(common_name, "White|Black|Pink|Yellow|Blue|Green|Red|Orange|Brown|Golden"))
+```
+
+
+sessioninfo::session_info()
+
+
+
+
+
+
+
+
+
+
